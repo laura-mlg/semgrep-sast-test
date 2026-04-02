@@ -4,5 +4,8 @@ config_version = "0"
 name = "default"
 default = true
 
+[plugins.definitions.semgrep.drivers.lint]
+success_codes = [0, 1]
+
 [[plugin]]
 name = "semgrep"

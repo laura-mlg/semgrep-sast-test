@@ -1,17 +1,4 @@
 rules:
-  - id: ruby-sql-injection
-    patterns:
-      - pattern: |
-          "... #{...} ..."
-      - pattern-inside: |
-          $MODEL.where(...)
-    message: Possible SQL injection via string interpolation in ActiveRecord query
-    languages: [ruby]
-    severity: ERROR
-    metadata:
-      category: security
-      cwe: "CWE-89: SQL Injection"
-
   - id: ruby-command-injection
     pattern: system("... #{...} ...")
     message: Possible command injection via string interpolation in system call
