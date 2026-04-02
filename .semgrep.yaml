@@ -1,0 +1,45 @@
+rules:
+  - id: ruby-unsafe-eval
+    pattern: eval(...)
+    message: Use of eval() is dangerous and can lead to code injection
+    languages: [ruby]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-94"
+
+  - id: ruby-unsafe-yaml-load
+    pattern: YAML.load(...)
+    message: Use YAML.safe_load() instead of YAML.load() to prevent deserialization attacks
+    languages: [ruby]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-502"
+
+  - id: ruby-send-injection
+    pattern: send(params[...])
+    message: Dynamic method dispatch with user input can lead to arbitrary method execution
+    languages: [ruby]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-94"
+
+  - id: ruby-open-redirect
+    pattern: redirect_to params[...]
+    message: Open redirect vulnerability - validate redirect URLs before use
+    languages: [ruby]
+    severity: WARNING
+    metadata:
+      category: security
+      cwe: "CWE-601"
+
+  - id: ruby-sql-injection-where
+    pattern: $MODEL.where("..." + ...)
+    message: Possible SQL injection via string concatenation in ActiveRecord query
+    languages: [ruby]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-89"

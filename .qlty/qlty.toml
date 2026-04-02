@@ -4,8 +4,5 @@ config_version = "0"
 name = "default"
 default = true
 
-[plugins.definitions.semgrep.drivers.lint]
-script = "semgrep --metrics=off --disable-version-check --config p/ruby --config p/rails --config p/security-audit --config p/owasp-top-ten --sarif --output=${tmpfile} ${target}"
-
 [[plugin]]
 name = "semgrep"
