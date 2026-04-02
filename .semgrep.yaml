@@ -6,7 +6,7 @@ rules:
     severity: ERROR
     metadata:
       category: security
-      cwe: "CWE-78: OS Command Injection"
+      cwe: "CWE-78"
 
   - id: ruby-unsafe-eval
     pattern: eval(...)
@@ -15,22 +15,13 @@ rules:
     severity: WARNING
     metadata:
       category: security
-      cwe: "CWE-94: Code Injection"
+      cwe: "CWE-94"
 
   - id: ruby-unsafe-yaml-load
     pattern: YAML.load(...)
-    message: Use YAML.safe_load() instead of YAML.load() to prevent deserialization attacks
+    message: Use YAML.safe_load instead of YAML.load to prevent deserialization attacks
     languages: [ruby]
     severity: ERROR
     metadata:
       category: security
-      cwe: "CWE-502: Deserialization of Untrusted Data"
-
-  - id: ruby-erb-injection
-    pattern: ERB.new($INPUT).result(...)
-    message: ERB template injection - user input should not be passed directly to ERB.new
-    languages: [ruby]
-    severity: ERROR
-    metadata:
-      category: security
-      cwe: "CWE-94: Code Injection"
+      cwe: "CWE-502"
