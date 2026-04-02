@@ -1,0 +1,49 @@
+rules:
+  - id: ruby-sql-injection
+    patterns:
+      - pattern: |
+          "... #{...} ..."
+      - pattern-inside: |
+          $MODEL.where(...)
+    message: Possible SQL injection via string interpolation in ActiveRecord query
+    languages: [ruby]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-89: SQL Injection"
+
+  - id: ruby-command-injection
+    pattern: system("... #{...} ...")
+    message: Possible command injection via string interpolation in system call
+    languages: [ruby]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-78: OS Command Injection"
+
+  - id: ruby-unsafe-eval
+    pattern: eval(...)
+    message: Use of eval() is dangerous and can lead to code injection
+    languages: [ruby]
+    severity: WARNING
+    metadata:
+      category: security
+      cwe: "CWE-94: Code Injection"
+
+  - id: ruby-unsafe-yaml-load
+    pattern: YAML.load(...)
+    message: Use YAML.safe_load() instead of YAML.load() to prevent deserialization attacks
+    languages: [ruby]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-502: Deserialization of Untrusted Data"
+
+  - id: ruby-erb-injection
+    pattern: ERB.new($INPUT).result(...)
+    message: ERB template injection - user input should not be passed directly to ERB.new
+    languages: [ruby]
+    severity: ERROR
+    metadata:
+      category: security
+      cwe: "CWE-94: Code Injection"
